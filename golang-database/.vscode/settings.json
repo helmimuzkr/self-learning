@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 150,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "belajar_golang",
+            "username": "root",
+            "database": "belajar_golang",
+            "password": ""
+        }
+    ]
+}

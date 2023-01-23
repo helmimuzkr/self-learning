@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home</title>
+    </head>
+    <body>
+        <div>
+            <button><a href="/logout">Logout</a></button>
+            <form action="/tambah" method="post">
+                <label for="">Product Id</label>
+                <input type="number" name="product_id" id="" />
+                <div>
+                    <label for="">Product Name</label>
+                    <input type="text" name="product_name" id="" />
+                </div>
+                <div>
+                    <label for="">Price</label>
+                    <input type="number" name="product_price" id="" />
+                </div>
+                <button type="submit" name="tambah">Login</button>
+            </form>
+        </div>
+        <div>
+            <ul>
+                {{range $index, $element := .Products}}
+                <li><h4>{{$element.ID}} - {{$element.Name}} - {{$element.Price}}</h4></li>
+                {{else}}
+                <h1>Product kososng</h1>
+                {{end}}
+            </ul>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{.Title}}</title>
+    </head>
+    <body>
+        <!--
+            Operator perbadingan sebenarnya adalah function
+            dengan parameter arg1 dan arg2
+        -->
+        <!-- 
+            operator perbandingan :
+            eq = equal (arg1 == args2)
+            ne = not equal (arg1 != arg2)
+            lt = less than (arg1 < arg2)
+            le = less than equal (arg1 <= arg2)
+            gt = greater than (arg1 > arg2)
+            ge = greater than equal (arg1 >= arg2)
+        -->
+        {{if eq .People.Name "Muzakir"}}
+        <h1>Halo {{.People.Name}}</h1>
+        {{else}}
+        <h1>Bukan Helmi</h1>
+        {{end}}
+    </body>
+</html>
