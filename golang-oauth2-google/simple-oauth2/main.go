@@ -6,22 +6,12 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/gorilla/sessions"
+	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/calendar/v3"
-	"google.golang.org/api/option"
-)
-
-var (
-	GoogleOauthConfig = &oauth2.Config{
-		RedirectURL:  "http://localhost:8000/callback",
-		ClientID:     ClientID,
-		ClientSecret: ClientSecret,
-		Scopes:       []string{"https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/calendar"},
-		Endpoint:     google.Endpoint,
-	}
-	RandomState = "random"
 )
 
 func main() {
@@ -29,6 +19,7 @@ func main() {
 
 	e.GET("/login", loginHandler)
 	e.GET("/callback", callbackHandler)
+	e.GET("/calendar", calendarHandler)
 
 	if err := e.Start(":8000"); err != nil {
 		log.Fatal(err)
@@ -36,39 +27,63 @@ func main() {
 }
 
 func loginHandler(c echo.Context) error {
-	url := GoogleOauthConfig.AuthCodeURL("random")
-	// return http.Redirect(c.Response(), c.Request(), url, http.StatusTemporaryRedirect)
+	conf := &oauth2.Config{
+		RedirectURL:  "http://localhost:8000/callback",
+		ClientID:     ClientID,
+		ClientSecret: ClientSecret,
+		Scopes:       []string{"https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/calendar"},
+		Endpoint:     google.Endpoint,
+	}
+	state := "random_state"
+
+	url := conf.AuthCodeURL(state)
+
+	sess, _ := session.Get("session", c)
+	sess.Options = &sessions.Options{
+		Path:     "/",
+		MaxAge:   86400 * 7,
+		HttpOnly: true,
+	}
+	sess.Values["state"] = state
+	sess.Values["conf"] = conf
+	sess.Save(c.Request(), c.Response())
+
 	return c.Redirect(http.StatusTemporaryRedirect, url)
 }
 
 func callbackHandler(c echo.Context) error {
-	if c.FormValue("state") != RandomState {
+	sess, _ := session.Get("session", c)
+
+	state := sess.Values["state"]
+	conf := sess.Values["conf"].(*oauth2.Config)
+
+	if state != c.FormValue("state") {
 		log.Println("state is not valid")
 		return c.JSON(400, "state is not valid")
 	}
 
 	ctx := context.Background()
 
-	token, err := GoogleOauthConfig.Exchange(ctx, c.FormValue("code"))
+	token, err := conf.Exchange(ctx, c.FormValue("code"))
 	if err != nil {
 		return c.JSON(400, err.Error())
 	}
 
-	// Get user
-	// resp, err := http.Get("https://www.googleapis.com/oauth2/v2/userinfo?access_token=" + token.AccessToken)
-	// if err != nil {
-	// 	return c.JSON(500, err.Error())
-	// }
-	// defer resp.Body.Close()
 
-	// content, err := ioutil.ReadAll(resp.Body)
-	// if err != nil {
-	// 	return c.JSON(500, err.Error())
-	// }
 
-	// contentStr := string(content)
+	client := conf.Client(ctx, token)
+	sess.Values["client"] = client
+	sess.Save(c.Request(), c.Response())
 
-	calendarService, err := calendar.NewService(ctx, option.WithTokenSource(GoogleOauthConfig.Client(ctx, token)))
+	return c.Redirect(http.StatusTemporaryRedirect, "http://localhost:8000/calendar")
+}
+
+func calendarHandler(c echo.Context) error {
+	sess, _ := session.Get("session", c)
+
+	client := sess.Values["client"].(*http.Client)
+
+	calendarService, err := calendar.New(client)
 	if err != nil {
 		return c.JSON(500, err.Error())
 	}
