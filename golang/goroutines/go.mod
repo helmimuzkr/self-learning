@@ -1,3 +1,3 @@
-module golang-goroutines
+module goroutine
 
 go 1.19
