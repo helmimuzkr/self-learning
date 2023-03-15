@@ -22,7 +22,7 @@ func TestCreateFile(t *testing.T) {
 	}
 	// Setiap selesai membuat file, file akan otomatis terbuka. Jadi harus ditutup setelah digunakan.
 	defer file.Close()
-	
+
 	fName := file.Name()
 	fmt.Println(fName)
 }
@@ -77,7 +77,6 @@ func TestWriteFile(t *testing.T) {
 	fmt.Println("File berhasil diupdate!")
 }
 
-
 // Read File
 func TestReadFile(t *testing.T) {
 	file, err := os.Open("src/coba.txt")
@@ -105,4 +104,3 @@ func TestReadFile(t *testing.T) {
 
 	fmt.Println(string(data))
 }
-

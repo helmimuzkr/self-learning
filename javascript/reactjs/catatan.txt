@@ -1,0 +1,77 @@
+install and configuration
+
+1. install the package you need
+    - npm install @babel/core @babel/cli @babel/preset-react
+    - npm install --save-dev lite-server
+    - npm i --save-dev npm-run-all
+
+2. configuration preset react
+    - create new file with name .babelrc or babel.config.json
+    - "preset": "@babel/preset-react"
+
+3. configuration scripts in package.json for compiling jsx and running lite server
+    - "build": "npx babel src --out-dir public --watch"
+    - "serve": "npx lite-server --baseDir public"
+    - "start": "npm-run-all -p build serve"
+
+
+note : 
+A.  what the difference between npm install without and with --save-dev? 
+    --save-dev mean is that package save for dependency development.
+    Jadi, pada file package.json ada 2 objek penyimpanan package, yaitu Dependency dan devDependency. Dependency adalah package yang diperlukan untuk produksi. sedangkan, devDependency package yang digunakan pada saat development saja.
+    
+B.  install and i is the same
+
+C.  "serve": "npx lite-server --baseDir public"
+    - "nama_command": "command argumen_folder-yang-mau-dirunning folder"
+    - Custom path to your base directory --baseDir= run time.
+
+D. "build": "npx babel app.js --out-file app.js --watch"
+    - If you would like to output to a file you may use --out-dir or -o.
+    - Or, you would like to compile the entire src directory and output it to the public directory 
+      by using either --out-dir or -d.
+    - To compile a file every time that you change it, use the --watch or -w.
+
+C. "start": "npm-run-all -p build serve"
+    - -p = parallel
+
+D. React component adalah function yang namanya diawali dengan huruf besar, dan memiliki return react element
+    Contoh :
+    funtion NamaFunction() {
+        return element
+    }
+
+E.  React.Fragment = <> ... </>
+
+F.  Saat menggunakan function Component, nama functionya harus diawali dengan huruf Capital, begitu pula pemanggilannya pun juga.
+
+G.  if-else statements don't work inside JSX. This is because JSX is just syntactic sugar for function calls and object construction. 
+    If you want to render the element conditionally then use ternary operator.
+
+H.  PARAMETER VS ARGUMENT
+    Parameter adalah variabel yang adal di dalam kurung function digunakan untuk menampung nilai. Sedangkan, 
+    argument adalah nilai yang akan di kirimkan ke parameter saat fungsi dijalankan
+    Contoh :
+        function nama(param) { // Body function }
+	    
+        var hasil = nama(arg);
+
+	    console.log(hasil);
+
+I.  FUNCTION DECLARATION VS FUNCTION EXPRESION
+    Function declaration = function identifier(params_optional) {body}
+    Function expression = function identifier_optional(param_optional) {body}
+
+    Contoh declaration :
+        function nama(param_opt) {body}
+
+    Contoh expression : 
+        const nama = function(param_opt) {body}
+   
+    Pilih mana? untuk javascript modern jelas function expression!
+
+J.  Arrow Function
+    Arrow function adalah fungsi yang bentuknya lebih ringkas dari fungsi expression
+
+    Contoh :
+        const nama = (param_opt) => {body}

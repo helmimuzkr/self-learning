@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+    font-size: 1.5rem;
+}
+
+body {
+    margin: 50px;
+    background-color: #282c34;
+    color: white;
+}
+
+div {
+    margin: 20px;
+}
+
+button {
+    padding: 0 10px;
+    margin: 0 10px;
+}
