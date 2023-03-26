@@ -1,4 +1,4 @@
-module grpc_go
+module github.com/helmimuzkr
 
 go 1.19
 

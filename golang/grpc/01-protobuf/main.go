@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"grpc_go/01-protobuf/pb"
 	"log"
+
+	"github.com/helmimuzkr/01-protobuf/pb"
 
 	"google.golang.org/protobuf/encoding/protojson"
 )

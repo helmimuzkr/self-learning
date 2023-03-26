@@ -4,7 +4,7 @@ option go_package = "/user";
 package user;
 
 service UserService {
-    rpc GetUser(Empty) returns (ListUserResponse) {};
+    rpc ListUser(Empty) returns (ListUserResponse) {};
     rpc Register(RegisterUserRequest) returns (Empty) {};
 }
 
