@@ -1,0 +1,22 @@
+{
+    "pagination": {
+        "limit_data": 10,
+        "total_data": 2,
+        "current_page": 1,
+        "total_page": 1
+    },
+    "data": [
+        {
+            "id": 1,
+            "first_name": "helmi",
+            "last_name": "muzakir",
+            "date_of_birth": "1999-10-05"
+        },
+        {
+            "id": 2,
+            "first_name": "eka",
+            "last_name": "budi",
+            "date_of_birth": "1999-08-09"
+        }
+    ]
+}

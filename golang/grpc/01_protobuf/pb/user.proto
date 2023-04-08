@@ -1,0 +1,33 @@
+syntax = "proto3";
+// letak package hasil generate file user.proto ke golang nanti.
+option go_package = "/pb"; 
+
+// nama package hasil generate file user.proto.
+package pb;
+
+// Protocol buffer adalah metode serilize data yang dibuat oleh google. 
+// Pada REST API format data yang dikirim adalah json, sedangkan di GRPC adalah protocol buffer.
+
+// Salah satu keunggulan grpc adalah karena menggunakan protocol buffer, proses komunikasi bisa lebih cepat ketimbang REST API.
+// ini dikarenakan ketika mengirim data, grpc melakukan serelialisasi menjadi proto buf yang mana data yang dikirim adalah bytes,
+// sedangkan REST API melakukan serelialisasi data dari objek ke string json.
+
+message User {
+    uint64 id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string date_of_birth = 4;
+}   
+
+message Pagination {
+    int32 limit_data = 1;
+    int32 total_data = 2;
+    int32 current_page = 3;
+    int32 total_page = 4;
+}
+
+
+message ListResponse {
+    Pagination pagination = 1;
+    repeated User data = 2;
+}
