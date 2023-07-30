@@ -1,6 +1,6 @@
 package com.playground.springcore;
 
-import com.playground.springcore.common.controller.UserController;
+import com.playground.springcore.component.UserController;
 import com.playground.springcore.common.repository.UserRepository;
 import com.playground.springcore.common.service.UserService;
 import com.playground.springcore.componentscan.ComponentScanConfig;
