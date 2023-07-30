@@ -1,6 +1,7 @@
 package com.myplayground.reflection;
 
 import com.myplayground.reflection.data.DtoUser;
+import com.myplayground.reflection.data.User;
 
 public class ClassReflection {
 

@@ -1,5 +1,6 @@
 package com.playground.springcore.bean;
 
+import com.playground.springcore.common.domain.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

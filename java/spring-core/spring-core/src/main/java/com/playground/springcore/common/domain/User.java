@@ -1,4 +1,4 @@
-package com.playground.springcore.bean;
+package com.playground.springcore.common.domain;
 
 import lombok.Data;
 

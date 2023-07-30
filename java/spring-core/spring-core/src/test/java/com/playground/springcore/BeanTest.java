@@ -1,6 +1,7 @@
 package com.playground.springcore;
 
 import com.playground.springcore.bean.*;
+import com.playground.springcore.common.domain.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
