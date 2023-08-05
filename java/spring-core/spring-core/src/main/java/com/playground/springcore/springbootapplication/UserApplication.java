@@ -27,6 +27,6 @@ public class UserApplication {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(UserApplication.class, args);
 
         UserController userController = applicationContext.getBean(UserController.class);
-        System.out.println(userController);
+        userController.saveUserController();
     }
 }
