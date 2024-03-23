@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/google/uuid"
-	"github.com/helmimuzkr/nyoba-templ/store/db"
-	"github.com/helmimuzkr/nyoba-templ/types"
-	"github.com/helmimuzkr/nyoba-templ/utill"
+	"github.com/helmimuzkr/templ/store/db"
+	"github.com/helmimuzkr/templ/types"
+	"github.com/helmimuzkr/templ/utill"
 )
 
 func UserInformationHandler(ctx *types.Context) error {

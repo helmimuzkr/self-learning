@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/helmimuzkr/nyoba-templ/types"
+	"github.com/helmimuzkr/templ/types"
 )
 
 func JsonDecode(r *http.Request, target any) error {

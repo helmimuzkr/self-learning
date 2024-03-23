@@ -6,8 +6,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/helmimuzkr/nyoba-templ/handler"
-	"github.com/helmimuzkr/nyoba-templ/utill"
+	"github.com/helmimuzkr/templ/handler"
+	"github.com/helmimuzkr/templ/utill"
 )
 
 //go:embed view/*.html

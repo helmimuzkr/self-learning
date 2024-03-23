@@ -3,8 +3,8 @@ package db
 import (
 	"fmt"
 
-	"github.com/helmimuzkr/nyoba-templ/types"
-	"github.com/helmimuzkr/nyoba-templ/utill"
+	"github.com/helmimuzkr/templ/types"
+	"github.com/helmimuzkr/templ/utill"
 )
 
 func SaveUser(user *types.RegisterUserRequest, id string) error {

@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/helmimuzkr/nyoba-templ/types"
+	"github.com/helmimuzkr/templ/types"
 )
 
 // In Go, once you've read the request body using io.ReadAll, the underlying r.Body stream is consumed,

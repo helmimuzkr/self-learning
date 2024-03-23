@@ -1,4 +1,4 @@
-module github.com/helmimuzkr/nyoba-templ
+module github.com/helmimuzkr/templ
 
 go 1.22.1
 

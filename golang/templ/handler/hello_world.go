@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/helmimuzkr/nyoba-templ/types"
+	"github.com/helmimuzkr/templ/types"
 	"fmt"
 ) 
 
