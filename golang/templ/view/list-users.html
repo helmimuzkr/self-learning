@@ -1,0 +1,18 @@
+{{define "list-users"}} {{template "header"}}
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{range $i, $user := .Content}}
+        <tr>
+            <th scope="row">{{$user.Name}}</th>
+            <td>{{$user.Age}}</td>
+        </tr>
+        {{end}}
+    </tbody>
+</table>
+{{template "footer"}} {{end}}
