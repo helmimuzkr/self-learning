@@ -9,7 +9,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		slog.Info("incoming request", "host", r.URL.Host, "url", r.URL.RawPath)
+		slog.Info("incoming request", "host", r.Host, "url", r.URL)
 		w.Write([]byte("Hello from app1"))
 	})
 
