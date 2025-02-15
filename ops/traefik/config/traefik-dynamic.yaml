@@ -1,0 +1,18 @@
+http:
+  middlewares:
+    # Note: when used in docker-compose.yml all dollar signs in the hash need to be doubled for escaping.
+    # Passwords must be hashed using MD5, SHA1, or BCrypt.
+    dashboard-auth:
+      basicAuth:
+        users:
+          - "admin:$apr1$yb2pm3sk$3FeCXGMxESJdjubGUBIpI." #admin/admin
+  routers:
+    # create "dashboard" router
+    # everything under /api or /dashboard requires basic authentication before accessing the dashboard
+    dashboard:
+      rule: "PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
+      entrypoints:
+        - "traefik" # entrypoints dashboard or port :8080
+      middlewares:
+        - dashboard-auth # implement middlewares to this router
+      service: api@internal # implement this router to traefik internal api or dashboard service 

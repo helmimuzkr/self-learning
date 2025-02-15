@@ -1,0 +1,16 @@
+services:
+  app2-be:
+    image: app2:latest
+    container_name: app2
+    ports:
+       - "127.0.0.1:8082:8082"
+    networks:
+      - backend
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.app2-http.rule=Host(`app2.localhost`)
+      - traefik.http.routers.app2-http.entrypoints=web
+    restart: unless-stopped
+networks:
+  backend:
+    external: true

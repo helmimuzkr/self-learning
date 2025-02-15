@@ -1,0 +1,17 @@
+services:
+  app1-be:
+    image: app1:latest
+    container_name: app1
+    ports:
+       - "127.0.0.1:8081:8081"
+    networks:
+      - backend
+    labels:
+      # register to traefi1k
+      - traefik.enable=true # tell traefik to manage routing for this container
+      - traefik.http.routers.app1-http.rule=Host(`app1.localhost`) # when the client calls http://app1.localhost, the incoming request will be forwaded to app1
+      - traefik.http.routers.app1-http.entrypoints=web # entry point for traefik should listen. web = :80 or http port
+    restart: unless-stopped
+networks:
+  backend:
+    external: true
