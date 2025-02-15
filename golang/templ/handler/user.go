@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
@@ -14,14 +15,14 @@ func UserInformationHandler(ctx *types.Context) error {
 	if name == "" {
 		name = "default"
 	}
-
+	fmt.Println("sdkjfjdks")
 	user := types.User{
 		Name: name,
 		Age:  99,
 	}
 
 	data := types.Data{
-		Status:  "found",
+		Status:  "Success",
 		Content: user,
 	}
 
@@ -40,7 +41,7 @@ func UserListHandler(ctx *types.Context) error {
 	users := []types.User{user, user2}
 
 	data := types.Data{
-		Status:  "found",
+		Status:  "Success",
 		Content: users,
 	}
 

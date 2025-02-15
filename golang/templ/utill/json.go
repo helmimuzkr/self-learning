@@ -3,18 +3,26 @@ package utill
 import (
 	"encoding/json"
 	"fmt"
+	"log/slog"
 	"net/http"
 
 	"github.com/helmimuzkr/templ/types"
 )
 
+const (
+	defaultErrMsg = "error during %s - %s"
+)
+
 func JsonDecode(r *http.Request, target any) error {
 	if r.Body == nil {
-		return fmt.Errorf("error during JsonDecode - missing request body")
+		err := fmt.Errorf("missing request body")
+		slog.Error(defaultErrMsg, "jsonDecode", err)
+		return err
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(target); err != nil {
-		return fmt.Errorf("error during JsonDecode - decode json - %s", err)
+		slog.Error(defaultErrMsg, "jsonDecode", err)
+		return fmt.Errorf("error during  decode json")
 	}
 
 	return nil
