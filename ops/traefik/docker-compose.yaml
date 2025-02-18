@@ -17,13 +17,13 @@ services:
       # mount traefik config and make it read only
       - ./config/traefik.yaml:/etc/traefik/traefik.yaml:ro
       - ./config/traefik-dynamic.yaml:/etc/traefik/traefik-dynamic.yaml:ro
-    # connect to backend network
     networks:
+      # connect to backend network
       - backend
     labels:
       traefik.enable: 'true'
     restart: unless-stopped
 networks:
   backend:
-    # using existing netoworks
+    # use existing network
     external: true
