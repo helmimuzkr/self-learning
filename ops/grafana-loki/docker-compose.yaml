@@ -1,0 +1,35 @@
+services:
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - "3100:3100"
+    volumes:
+      # The Loki configuration file (loki-config.yaml) is mapped to /etc/loki/loki-config.yaml inside the container
+      - ./config/loki-config.yaml:/etc/loki/loki-config.yaml
+    command: 
+      # The command ensures that Loki uses the provided configuration file
+      - -config.file=/etc/loki/loki-config.yaml
+    networks:
+      # for comunicate between another container within same network
+      - grafana
+    restart: unless-stopped
+
+  promtail:
+    image: grafana/promtail:latest
+    volumes:
+      - ./config/promtail-config.yml:/etc/promtail/promtail-config.yaml
+    networks:
+      - grafana
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - grafana
+    restart: unless-stopped
+
+networks:
+  grafana:
+    external: true
